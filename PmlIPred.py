@@ -15,9 +15,9 @@ TotalSequenceLength = 0 # the total sequence length
 splant = 'aly' # plant species
 
 # Read data
-sequencepath = 'data\\' + splant + '\\Training-test dataset.fasta' # raw sequence information
+sequencepath = splant + '\\Training-test dataset.fasta' # raw sequence information
 listsequence = open(sequencepath, 'r').readlines()
-featurepath = 'data\\' + splant + '\\Training-test feature.fasta' # feature information
+featurepath = splant + '\\Training-test feature.fasta' # feature information
 listfeature = open(featurepath,'r').readlines()
 
 # Get the maximum length of the sequence
