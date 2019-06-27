@@ -1,4 +1,4 @@
-# PmlIPred
+# PmliPred
 
 import numpy as np
 import re
