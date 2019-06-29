@@ -1,4 +1,4 @@
-# PmliPred
+# PmliPred for K-fold cross validation
 
 import numpy as np
 import re
