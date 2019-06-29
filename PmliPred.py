@@ -14,7 +14,7 @@ np.random.seed(1337) # seed
 TotalSequenceLength = 0 # the total sequence length
 splant = 'aly' # plant species
 
-# Read data
+# Load data
 sequencepath = 'data\\' + splant + '\\Training-test dataset.fasta' # raw sequence information
 listsequence = open(sequencepath, 'r').readlines()
 featurepath = 'data\\' + splant + '\\Training-test feature.fasta' # feature information
