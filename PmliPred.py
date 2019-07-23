@@ -124,7 +124,7 @@ def creatdatamachinelearning(ListTrainFeature, ListTestFeature):
 
     return TrainDataMl, TrainLabelMl, TestDataMl
 
-# CNN-Bi-GRU
+# CNN-BiGRU
 def CNNBiGRU(TrainDataDl, TrainLabelDl, TestDataDl, TotalSequenceLength, epo):
 
     # Model
@@ -158,7 +158,7 @@ def CNNBiGRU(TrainDataDl, TrainLabelDl, TestDataDl, TotalSequenceLength, epo):
 	# Flatten layer
     model.add(TimeDistributed(Flatten()))
 
-    # Bi-GRU
+    # BiGRU
     model.add(Bidirectional(GRU(units=64, activation='tanh', recurrent_activation='hard_sigmoid', use_bias=True, kernel_initializer='glorot_uniform',
                   recurrent_initializer='orthogonal', bias_initializer='zeros', kernel_regularizer=None, recurrent_regularizer=None,
                   bias_regularizer=None, activity_regularizer=None, kernel_constraint=None, recurrent_constraint=None, bias_constraint=None,
@@ -312,7 +312,7 @@ TrainDataDl, TrainLabelDl, TestDataDl, TestLabelDl = creatdatadeeplearning(ListT
 # creat machine learning data
 TrainDataMl, TrainLabelMl, TestDataMl = creatdatamachinelearning(ListTrainFeature, ListTestFeature)
 
-# CNN-Bi-GRU
+# CNN-BiGRU
 ResultsLabel = CNNBiGRU(TrainDataDl, TrainLabelDl, TestDataDl, TotalSequenceLength, epo)
 
 # RF
