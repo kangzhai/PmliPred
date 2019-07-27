@@ -333,7 +333,7 @@ for rowfuz in range(FinaLabel.shape[0]):
 # obtain the results
 TP, FP, TN, FN, TPR, TNR, PPV, NPV, FNR, FPR, FDR, FOR, ACC, F1, MCC, BM, MK = comparison(TestLabelDl, FinaLabel)
 	
-# print the results of each fold
+# print the results
 print('TP:', TP, 'FP:', FP, 'TN:', TN, 'FN:', FN)
 print('TPR:', TPR, 'TNR:', TNR, 'PPV:', PPV, 'NPV:', NPV, 'FNR:', FNR, 'FPR:', FPR, 'FDR:', FDR, 'FOR:', FOR)
 print('ACC:', ACC, 'F1:', F1, 'MCC:', MCC, 'BM:', BM, 'MK:', MK)
