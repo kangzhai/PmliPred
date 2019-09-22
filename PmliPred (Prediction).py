@@ -1,0 +1,250 @@
+# PmliPred for prediction
+
+import numpy as np
+import re
+import math
+from keras.utils import np_utils
+from keras.models import Sequential
+from keras.layers.recurrent import LSTM, GRU, SimpleRNN
+from keras.layers import Dense, Dropout, Activation, Convolution2D, MaxPooling2D, Flatten, TimeDistributed, RNN, Bidirectional, normalization
+from keras import optimizers
+from sklearn import ensemble
+
+np.random.seed(1337) # seed
+TotalSequenceLength = 0 # the total sequence length
+InteractionName = 'miR482b-TCONS_00023468' # plant species: 'miR482b-TCONS_00023468' or 'miR399-lnc1077'
+IndependentTimes = 30 # times of independent prediction
+
+# Load data
+TrainSequencePath = 'Datasets\\Training-validation dataset\\Sequence.fasta' # raw sequence information for training
+ListTrainSequence = open(TrainSequencePath, 'r').readlines()
+TrainFeaturePath = 'Datasets\\Training-validation dataset\\Feature.fasta' # feature information for training
+ListTrainFeature = open(TrainFeaturePath,'r').readlines()
+TestSequencePath = 'Datasets\\' + InteractionName + '\\Sequence.fasta' # raw sequence information for test
+ListTestSequence = open(TestSequencePath, 'r').readlines()
+TestFeaturePath = 'Datasets\\' + InteractionName + '\\Feature.fasta' # feature information for test
+ListTestFeature = open(TestFeaturePath,'r').readlines()
+
+# Get the maximum length of the sequence
+for linelength1 in ListTrainSequence:
+    miRNAname, lncRNAname, sequence, label = linelength1.split(',')
+    if len(sequence) > TotalSequenceLength:
+        TotalSequenceLength = len(sequence)
+for linelength2 in ListTestSequence:
+    miRNAname, lncRNAname, sequence, label = linelength2.split(',')
+    if len(sequence) > TotalSequenceLength:
+        TotalSequenceLength = len(sequence)
+
+# one-hot encoding
+def onehot(list, TotalSequenceLength):
+    onehotsequence = []
+    onehotlabel = []
+    ATCG = 'ATCG'  # alphabet
+    char_to_int = dict((c, j) for j, c in enumerate(ATCG))  # set 'A': 0, 'T': 1, 'C': 2, 'G': 3
+
+    for line in list:
+        miRNAname, lncRNAname, sequence, label = line.split(',')
+        sequence = sequence.upper() # 序列中的小写字母变大写
+        sequence = sequence.replace('U', 'T') # 序列中的U换成T
+
+        #  integer encoding
+        integer_encoded = [char_to_int[char] for char in sequence]
+
+        #  one-hot encoding
+        hot_encoded = []
+
+        # encoding
+        for value in integer_encoded:
+            letter = [0 for _ in range(len(ATCG))]
+            letter[value] = 1
+            hot_encoded.append(letter)
+        # zero-padding
+        if len(hot_encoded) < TotalSequenceLength:
+            zero = TotalSequenceLength - len(hot_encoded)
+            letter = [0 for _ in range(len(ATCG))]
+            for i in range(zero):
+                hot_encoded.append(letter)
+
+        hot_encoded_array = np.array(hot_encoded).reshape(-1, 4)
+
+        onehotsequence.append(hot_encoded_array)
+
+        onehotlabel.append(label.strip('\n'))
+
+    X = np.array(onehotsequence).reshape(-1, TotalSequenceLength, 4, 1)
+    X = X.astype('float32')
+    Y = np.array(onehotlabel).astype('int').reshape(-1, 1)
+    Y = np_utils.to_categorical(Y, num_classes=2)
+
+    return X, Y
+
+# creat deep learning data
+def creatdatadeeplearning(ListTrainSequence, ListTestSequence, TotalSequenceLength):
+
+    Xtrain, Ytrain = onehot(ListTrainSequence, TotalSequenceLength)
+    TrainDataDl = np.array(Xtrain)
+    TrainLabelDl = np.array(Ytrain)
+    Xtest, Ytest = onehot(ListTestSequence, TotalSequenceLength)
+    TestDataDl = np.array(Xtest)
+    TestLabelDl = np.array(Ytest)
+
+    return TrainDataDl, TrainLabelDl, TestDataDl, TestLabelDl
+
+# creat machine learning data
+def creatdatamachinelearning(ListTrainFeature, ListTestFeature):
+
+    # separate the label
+    rowtraindata = len(ListTrainFeature)
+    columntraindata = len(ListTrainFeature[0].split()) - 1
+    rowtestdata = len(ListTestFeature)
+    columntestdata = len(ListTestFeature[0].split()) - 1
+
+    # get the training data and label
+    TrainDataMl = [([0] * columntraindata) for p in range(rowtraindata)]
+    TrainLabelMl = [([0] * 1) for p in range(rowtraindata)]
+    for linetraindata in ListTrainFeature:
+        setraindata = re.split(r'\s', linetraindata)
+        indextraindata = ListTrainFeature.index(linetraindata)
+        for itraindata in range(len(setraindata) - 1):
+            if itraindata < len(setraindata) - 2:
+                TrainDataMl[indextraindata][itraindata] = float(setraindata[itraindata])
+            else:
+                TrainLabelMl[indextraindata][0] = float(setraindata[itraindata])
+
+    # get the validation data and label
+    TestDataMl = [([0] * columntestdata) for p in range(rowtestdata)]
+    for linetestdata in ListTestFeature:
+        setestdata = re.split(r'\s', linetestdata)
+        indextestdata = ListTestFeature.index(linetestdata)
+        for itestdata in range(0, len(setestdata) - 1):
+            if itestdata < len(setestdata) - 2:
+                TestDataMl[indextestdata][itestdata] = float(setestdata[itestdata])
+
+    return TrainDataMl, TrainLabelMl, TestDataMl
+
+# CNN-BiGRU
+def CNNBiGRU(TrainDataDl, TrainLabelDl, TestDataDl, TotalSequenceLength):
+
+    # Model
+    model = Sequential()
+
+    # Convolution layer
+    model.add(Convolution2D(batch_input_shape=(None, TotalSequenceLength, 4, 1), filters=32, kernel_size=4, strides=1, padding='same', data_format='channels_last'))
+
+    # Batch Normalization layer
+    normalization.BatchNormalization(axis=1, momentum=0.99, epsilon=0.001, center=True, scale=True, beta_initializer='zeros',
+                                     gamma_initializer='ones', moving_mean_initializer='zeros', moving_variance_initializer='ones',
+                                     beta_regularizer=None, gamma_regularizer=None, beta_constraint=None, gamma_constraint=None)
+
+    # Activation function
+    model.add(Activation('relu'))
+
+    # Convolution layer
+    model.add(Convolution2D(64, 4, strides=1, padding='same', data_format='channels_first'))
+
+    # Batch Normalization layer
+    normalization.BatchNormalization(axis=1, momentum=0.99, epsilon=0.001, center=True, scale=True, beta_initializer='zeros',
+                                     gamma_initializer='ones', moving_mean_initializer='zeros', moving_variance_initializer='ones',
+                                     beta_regularizer=None, gamma_regularizer=None, beta_constraint=None, gamma_constraint=None)
+
+    # Activation function
+    model.add(Activation('relu'))
+
+    # MaxPooling layer
+    model.add(MaxPooling2D(4, 4, 'same', data_format='channels_last'))
+
+    # Flatten layer
+    model.add(TimeDistributed(Flatten()))
+
+    # BiGRU
+    model.add(Bidirectional(GRU(units=64, activation='tanh', recurrent_activation='hard_sigmoid', use_bias=True, kernel_initializer='glorot_uniform',
+                  recurrent_initializer='orthogonal', bias_initializer='zeros', kernel_regularizer=None, recurrent_regularizer=None,
+                  bias_regularizer=None, activity_regularizer=None, kernel_constraint=None, recurrent_constraint=None, bias_constraint=None,
+                  dropout=0, recurrent_dropout=0, implementation=1, return_sequences=False, return_state=False, go_backwards=False,
+                  stateful=False, unroll=False, reset_after=False)))
+
+    # Drouout layer
+    model.add(Dropout(0.5))
+
+    # fully-connected layer
+    model.add(Dense(2))
+    model.add(Activation('softmax'))
+
+    # optimizer
+    sgd = optimizers.SGD(lr=0.01, decay=1e-6, momentum=0.9, nesterov=True)
+    model.compile(optimizer=sgd, loss='categorical_crossentropy', metrics=['accuracy'])
+
+    # training
+    print('Training --------------')
+    model.fit(TrainDataDl, TrainLabelDl, epochs=10, batch_size=64, verbose=1)
+
+    # get the confidence probability
+    ResultsLabel = model.predict(TestDataDl)
+
+    return ResultsLabel
+
+# RF
+def RF(TrainDataMl, TrainLabelMl, TestDataMl):
+
+    RFStruct = ensemble.RandomForestClassifier()
+    RFStruct.fit(TrainDataMl, TrainLabelMl) # training
+    RFscore = RFStruct.predict_proba(TestDataMl) # get the confidence probability
+
+    return RFscore
+
+# Prediction
+def Prediction(resultslabel,ListTestSequence):
+
+    PredictionResults = []
+
+    # 将resultslabel格式化
+    for row1 in range(resultslabel.shape[0]):
+        for column1 in range(resultslabel.shape[1]):
+            if resultslabel[row1][column1] < 0.5:
+                resultslabel[row1][column1] = 0
+            else:
+                resultslabel[row1][column1] = 1
+
+    # 预测
+    for row2 in range(resultslabel.shape[0]):
+        # 预测为正
+        if resultslabel[row2][0] == 0 and resultslabel[row2][1] == 1:
+            line = listtest[row2] # 获取为正的作用对信息
+            miRNAname, lncRNAname, sequence, label = line.split(',')  # 用','来分离序列
+            miRNAname = miRNAname.split(' ')[0]
+            PreString = miRNAname + ','+ lncRNAname + '\n'
+            PredictionResults.append(PreString)
+
+    return PredictionResults
+
+# creat deep learning data
+TrainDataDl, TrainLabelDl, TestDataDl, TestLabelDl = creatdatadeeplearning(ListTrainSequence, ListTestSequence, TotalSequenceLength)
+
+# creat machine learning data
+TrainDataMl, TrainLabelMl, TestDataMl = creatdatamachinelearning(ListTrainFeature, ListTestFeature)
+
+# Multiple times of independent prediction
+average = 0
+for ind in range(IndependentTimes):
+
+    # CNN-BiGRU
+    ResultsLabel = CNNBiGRU(TrainDataDl, TrainLabelDl, TestDataDl, TotalSequenceLength)
+
+    # RF
+    RFscore = RF(TrainDataMl, TrainLabelMl, TestDataMl)
+
+    # fuzzy decision
+    FinaLabel = ResultsLabel
+    for rowfuz in range(FinaLabel.shape[0]):
+        if abs(ResultsLabel[rowfuz][0] - ResultsLabel[rowfuz][1]) < abs(RFscore[rowfuz][0] - RFscore[rowfuz][1]):  # variable threshold
+            FinaLabel[rowfuz][0] = RFscore[rowfuz][0]
+            FinaLabel[rowfuz][1] = RFscore[rowfuz][1]
+
+    print('The Pc value of the' + str(ind + 1) + 'st/nd/rd/th independent prediction is')
+    print(FinaLabel[0][1])
+
+    # 置信度
+    average += FinaLabel[0][1]
+
+print('The average Pc value is')
+print(average1/independent)
