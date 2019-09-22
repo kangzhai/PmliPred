@@ -247,4 +247,4 @@ for ind in range(IndependentTimes):
     average += FinaLabel[0][1]
 
 print('The average Pc value is')
-print(average1/independent)
+print(average/IndependentTimes)
