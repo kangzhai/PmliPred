@@ -240,7 +240,7 @@ for ind in range(IndependentTimes):
             FinaLabel[rowfuz][0] = RFscore[rowfuz][0]
             FinaLabel[rowfuz][1] = RFscore[rowfuz][1]
 
-    print('The Pc value of the' + str(ind + 1) + 'st/nd/rd/th independent prediction is')
+    print('The Pc value of the ' + str(ind + 1) + 'st/nd/rd/th independent prediction is')
     print(FinaLabel[0][1])
 
     # add the Pc values
