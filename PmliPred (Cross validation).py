@@ -14,9 +14,9 @@ np.random.seed(1337) # seed
 TotalSequenceLength = 0 # the total sequence length
 
 # Read data
-sequencepath = 'datasets\\Training-validation dataset\\Sequence.fasta' # raw sequence information
+sequencepath = 'Datasets\\Training-validation dataset\\Sequence.fasta' # raw sequence information
 listsequence = open(sequencepath, 'r').readlines()
-featurepath = 'datasets\\Training-validation dataset\\Feature.fasta' # feature information
+featurepath = 'Datasets\\Training-validation dataset\\Feature.fasta' # feature information
 listfeature = open(featurepath,'r').readlines()
 
 # Get the maximum length of the sequence
