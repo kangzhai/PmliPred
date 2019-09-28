@@ -13,7 +13,7 @@ from sklearn import ensemble
 np.random.seed(1337) # seed
 TotalSequenceLength = 0 # the total sequence length
 
-# Read data
+# Load data
 sequencepath = 'Datasets\\Training-validation dataset\\Sequence.fasta' # raw sequence information
 listsequence = open(sequencepath, 'r').readlines()
 featurepath = 'Datasets\\Training-validation dataset\\Feature.fasta' # feature information
