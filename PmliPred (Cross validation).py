@@ -71,7 +71,7 @@ def onehot(list, TotalSequenceLength):
     X = np.array(onehotsequence).reshape(-1, TotalSequenceLength, 4, 1)
     X = X.astype('float32')
     Y = np.array(onehotlabel).astype('int').reshape(-1, 1)
-    Y = np_utils.to_categorical(Y, num_classes = 2)
+    Y = np_utils.to_categorical(Y, num_classes=2)
 
     return X, Y
 
