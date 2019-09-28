@@ -75,11 +75,11 @@ def onehot(list, TotalSequenceLength):
     X = np.array(onehotsequence).reshape(-1, TotalSequenceLength, 4, 1)
     X = X.astype('float32')
     Y = np.array(onehotlabel).astype('int').reshape(-1, 1)
-    Y = np_utils.to_categorical(Y, num_classes = 2)
+    Y = np_utils.to_categorical(Y, num_classes=2)
 
     return X, Y
 
-# creat deep learning data
+# create deep learning data
 def creatdatadeeplearning(ListTrainSequence, ListTestSequence, TotalSequenceLength):
 
     Xtrain, Ytrain = onehot(ListTrainSequence, TotalSequenceLength)
@@ -91,7 +91,7 @@ def creatdatadeeplearning(ListTrainSequence, ListTestSequence, TotalSequenceLeng
 
     return TrainDataDl, TrainLabelDl, TestDataDl, TestLabelDl
 
-# creat machine learning data
+# create machine learning data
 def creatdatamachinelearning(ListTrainFeature, ListTestFeature):
 
     # separate the label
@@ -164,7 +164,7 @@ def CNNBiGRU(TrainDataDl, TrainLabelDl, TestDataDl, TotalSequenceLength):
                   dropout=0, recurrent_dropout=0, implementation=1, return_sequences=False, return_state=False, go_backwards=False,
                   stateful=False, unroll=False, reset_after=False)))
 
-    # Drouout layer
+    # Dropout layer
     model.add(Dropout(0.5))
 
     # fully-connected layer
@@ -193,10 +193,10 @@ def RF(TrainDataMl, TrainLabelMl, TestDataMl):
 
     return RFscore
 
-# creat deep learning data
+# create deep learning data
 TrainDataDl, TrainLabelDl, TestDataDl, TestLabelDl = creatdatadeeplearning(ListTrainSequence, ListTestSequence, TotalSequenceLength)
 
-# creat machine learning data
+# create machine learning data
 TrainDataMl, TrainLabelMl, TestDataMl = creatdatamachinelearning(ListTrainFeature, ListTestFeature)
 
 # CNN-BiGRU

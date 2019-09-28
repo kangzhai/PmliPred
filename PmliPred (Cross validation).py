@@ -442,13 +442,13 @@ X, Y = onehot(listsequence, TotalSequenceLength)
 # K-fold cross validation
 for iteration in range(K):
 
-    # creat deep learning data
+    # create deep learning data
     traindata, trainlabeldl, testdata, testlabeldl = creatdatadeeplearning(X, Y, iteration, K)
 
     # CNN-BiGRU
     resultslabel = CNNBiGRU(traindata, trainlabeldl, testdata, testlabeldl, TotalSequenceLength)
 
-    # creat machine learning data
+    # create machine learning data
     trainfeature, trainlabelml, testfeature, testlabelml = creatdatamachinelearning(listfeature, iteration, K)
 
     # RF
@@ -472,7 +472,7 @@ for iteration in range(K):
     # obtain the results
     TP, FP, TN, FN, TPR, TNR, PPV, NPV, FNR, FPR, FDR, FOR, ACC, F1, MCC, BM, MK = comparisondeeplearning(testlabeldl, resultslabel)
 
-    # pring the results of each fold
+    # print the results of each fold
     print('The', iteration + 1, 'fold')
     print('TP:', TP, 'FP:', FP, 'TN:', TN, 'FN:', FN)
     print('TPR:', TPR, 'TNR:', TNR, 'PPV:', PPV, 'NPV:', NPV, 'FNR:', FNR, 'FPR:', FPR, 'FDR:', FDR, 'FOR:', FOR)
@@ -501,7 +501,7 @@ for iteration in range(K):
 TPaverage, FPaverage, TNaverage, FNaverage, TPRaverage, TNRaverage, PPVaverage, NPVaverage = TPsum / K, FPsum / K, TNsum / K, FNsum / K, TPRsum / K, TNRsum / K, PPVsum / K, NPVsum / K
 FNRaverage, FPRaverage, FDRaverage, FORaverage, ACCaverage, F1average, MCCaverage, BMaverage, MKaverage = FNRsum / K, FPRsum / K, FDRsum / K, FORsum / K, ACCsum / K, F1sum / K, MCCsum / K, BMsum / K, MKsum / K
 
-# pring the results
+# print the results
 print('\ntest average TP: ', TPaverage)
 print('\ntest average FP: ', FPaverage)
 print('\ntest average TN: ', TNaverage)
