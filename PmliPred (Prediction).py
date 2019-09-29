@@ -79,7 +79,7 @@ def onehot(list, TotalSequenceLength):
     return X, Y
 
 # create deep learning data
-def creatdatadeeplearning(ListTrainSequence, ListTestSequence, TotalSequenceLength):
+def createdatadeeplearning(ListTrainSequence, ListTestSequence, TotalSequenceLength):
 
     Xtrain, Ytrain = onehot(ListTrainSequence, TotalSequenceLength)
     TrainDataDl = np.array(Xtrain)
@@ -91,7 +91,7 @@ def creatdatadeeplearning(ListTrainSequence, ListTestSequence, TotalSequenceLeng
     return TrainDataDl, TrainLabelDl, TestDataDl, TestLabelDl
 
 # create machine learning data
-def creatdatamachinelearning(ListTrainFeature, ListTestFeature):
+def createdatamachinelearning(ListTrainFeature, ListTestFeature):
 
     # separate the label
     rowtraindata = len(ListTrainFeature)
@@ -193,10 +193,10 @@ def RF(TrainDataMl, TrainLabelMl, TestDataMl):
     return RFscore
 
 # create deep learning data
-TrainDataDl, TrainLabelDl, TestDataDl, TestLabelDl = creatdatadeeplearning(ListTrainSequence, ListTestSequence, TotalSequenceLength)
+TrainDataDl, TrainLabelDl, TestDataDl, TestLabelDl = createdatadeeplearning(ListTrainSequence, ListTestSequence, TotalSequenceLength)
 
 # create machine learning data
-TrainDataMl, TrainLabelMl, TestDataMl = creatdatamachinelearning(ListTrainFeature, ListTestFeature)
+TrainDataMl, TrainLabelMl, TestDataMl = createdatamachinelearning(ListTrainFeature, ListTestFeature)
 
 # Multiple times of independent prediction
 average = 0

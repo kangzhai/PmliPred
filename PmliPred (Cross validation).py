@@ -44,10 +44,10 @@ def onehot(list, TotalSequenceLength):
         sequence = sequence.upper()
         sequence = sequence.replace('U', 'T')
 
-        #  integer encoding
+        # integer encoding
         integer_encoded = [char_to_int[char] for char in sequence]
 
-        #  one-hot encoding
+        # one-hot encoding
         hot_encoded = []
 
         # encoding
@@ -75,8 +75,8 @@ def onehot(list, TotalSequenceLength):
 
     return X, Y
 
-# creat deep learning data
-def creatdatadeeplearning(X, Y, iteration, K):
+# create deep learning data
+def createdatadeeplearning(X, Y, iteration, K):
 
     # separate the data
     totalpartX = len(X)
@@ -102,8 +102,8 @@ def creatdatadeeplearning(X, Y, iteration, K):
 
     return traindata, trainlabel, testdata, testlabel
 
-# creat machine learning data
-def creatdatamachinelearning(data, iteration, K):
+# create machine learning data
+def createdatamachinelearning(data, iteration, K):
 
     # separate the data
     totalpartdata = len(data)
@@ -443,13 +443,13 @@ X, Y = onehot(listsequence, TotalSequenceLength)
 for iteration in range(K):
 
     # create deep learning data
-    traindata, trainlabeldl, testdata, testlabeldl = creatdatadeeplearning(X, Y, iteration, K)
+    traindata, trainlabeldl, testdata, testlabeldl = createdatadeeplearning(X, Y, iteration, K)
 
     # CNN-BiGRU
     resultslabel = CNNBiGRU(traindata, trainlabeldl, testdata, testlabeldl, TotalSequenceLength)
 
     # create machine learning data
-    trainfeature, trainlabelml, testfeature, testlabelml = creatdatamachinelearning(listfeature, iteration, K)
+    trainfeature, trainlabelml, testfeature, testlabelml = createdatamachinelearning(listfeature, iteration, K)
 
     # RF
     RFgroup, RFscore = RF(trainfeature, trainlabelml, testfeature)
