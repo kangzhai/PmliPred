@@ -164,6 +164,9 @@ def CNNBiGRU(traindata, trainlabel, testdata, testlabel, TotalSequenceLength):
     # Activation function
     model.add(Activation('relu'))
 
+    # MaxPooling layer
+    model.add(MaxPooling2D(pool_size=4, strides=4, padding='same', data_format='channels_last'))
+
     # Convolution layer
     model.add(Convolution2D(64, 4, strides=1, padding='same', data_format='channels_first'))
 
