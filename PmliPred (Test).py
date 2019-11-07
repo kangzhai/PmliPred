@@ -3,7 +3,6 @@
 import numpy as np
 import re
 import math
-import matplotlib.pyplot as plt
 from keras.utils import np_utils
 from keras.models import Sequential
 from keras.layers.recurrent import LSTM, GRU, SimpleRNN
