@@ -46,12 +46,10 @@ python PmliPredForPrediction.py
 
 Explanation: there are two parameters can be adjusted manually, where "InteractionName" means the name of miRNA-lncRNA interaction, "IndependentTimes" means the times of independent prediction. Here we provide two selections of the name of miRNA-lncRNA interaction, such as 'miR482b-TCONS_00023468' or 'miR399-lnc1077'.
 
-Note: These three files can be opened using python IDE, such as pyCharm and so on. They can be also opened as the txt or fasta files. Then the parameters can be adjusted manually. We will try to make these parameters directly available as the input in future updates.
+# Note
+The above three files can be opened using python IDE, such as pyCharm and so on. They can be also opened as the txt or fasta files. Then the parameters can be adjusted manually. We will try to make these parameters directly available as the input in future updates.
 
-If you want use PmliPred to predict a new plant miRNA-lncRNA interaction.
-RNAfold in ViennaRNA package
-
-Install-ViennaRNA-2.4.10_64bit.exe is the installation of ViennaRNA package that contains RNAfold (a RNA secondary structure extraction tool). ViennaRNA package can be also downloaded from https://www.tbi.univie.ac.at/RNA/.
+"PmliPredForPridiction.py" can be also used to predict a new plant miRNA-lncRNA interaction. The input must be the miRNA-lncRNA sequence and manually features at this version. Here k-mer frequency and GC content are extracted by Python scripts, and number of base pairs and minimum free energy are extracted by Python scripts and RNAfold in ViennaRNA package. Install-ViennaRNA-2.4.10_64bit.exe is the installation of ViennaRNA package that contains RNAfold (a RNA secondary structure extraction tool). ViennaRNA package can be also downloaded from https://www.tbi.univie.ac.at/RNA/. Next we will organize these Python scripts to minimize the user's work.
 
 # Reference
 Wait for update
