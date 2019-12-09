@@ -13,6 +13,11 @@ python 3.6.5
 
 Keras 2.2.4
 
+# Prerequisite
+RNAfold in ViennaRNA package
+
+Install-ViennaRNA-2.4.10_64bit.exe is the installation of ViennaRNA package that contains RNAfold (a RNA secondary structure extraction tool). ViennaRNA package can be also downloaded from https://www.tbi.univie.ac.at/RNA/.
+
 # Datasets
 The example datasets can be obtained by unzipping "Datasets.zip".
 
@@ -27,11 +32,12 @@ The example datasets can be obtained by unzipping "Datasets.zip".
 # Feature description
 Feature description.xlsx lists the number of extracted features of each miRNA-lncRNA interaction sample, where 23 features are from miRNA and the other 87 features are from lncRNA.
 
-Install-ViennaRNA-2.4.10_64bit.exe is the installation of ViennaRNA parckage that contains the RNA sequence secondary structure extraction tool RNAfold. It can be also downloaded from https://www.tbi.univie.ac.at/RNA/.
-
 # Usage
+(1) perform k-fold cross validation
 
+(2) test PmliPred
 
+(3) predict plant miRNA-lncRNA interaction
 
 # Reference
 Wait for update
