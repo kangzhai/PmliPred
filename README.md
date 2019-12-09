@@ -19,7 +19,7 @@ Keras
 # Related link
 ViennaRNA Package 2.0 can be downloaded from https://www.tbi.univie.ac.at/RNA/.
 
-ViennaRNA Package 2.0 is also provided in this repository.
+Install-ViennaRNA-2.4.10_64bit.exe is also provided in this repository.
 
 # Reference
 Wait for update
