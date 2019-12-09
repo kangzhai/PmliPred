@@ -4,22 +4,27 @@ The related datasets and scoure codes of PmliPred privided by Q. Kang
 The latest version is updated on 2019.12.09.
 
 # Introduction
-PmliPred is a method for plant miRNA-lncRNA interaction prediction based on hybrid model and fuzzy decision. It is implemented by Keras 2.2.4 and all main scripts are written by Python 3.6.5 on PC under a Microsoft Windows 10 operating system.
+PmliPred is a method for plant miRNA-lncRNA interaction prediction based on hybrid model and fuzzy decision. It is implemented by Keras  and all main scripts are written by Python on PC under a Microsoft Windows 10 operating system.
 
-The repository can be downloaded locally by clicking "clone or download" button.
-
-# Description
-The example datasets can be obtained by unzipping "Datasets.zip". "miR399-1077" file includes the raw sequence and features
+The repository can be downloaded locally by clicking "clone or download" button. PmliPred can be applied directly without installation. 
 
 # Dependency
-python 2.7
+python 3.6.5
 
-Keras
+Keras 2.2.4
 
-# Related link
-ViennaRNA Package 2.0 can be downloaded from https://www.tbi.univie.ac.at/RNA/.
+# Datasets
+The example datasets can be obtained by unzipping "Datasets.zip".
+"Training-validation dataset" file includes the raw sequences and manually features of the samples for model training and validation. 
+"Test dataset" file includes the raw sequences and manually features of the samples for model test.
+"miR399-lnc1077" file includes the raw sequence and manually features of the interaction between miRNA (miR399) and lncRNA (lnc1077) in solanum lycopersicum. 
+"miR482b-TCONS_00023468" file includes the raw sequence and manually features of the interaction between miRNA (miR482b) and lncRNA (TCONS_00023468) in solanum lycopersicum.
 
-Install-ViennaRNA-2.4.10_64bit.exe is also provided in this repository.
+Install-ViennaRNA-2.4.10_64bit.exe is the installation of ViennaRNA parckage that contains the RNA sequence secondary structure extraction tool RNAfold. It can be also downloaded from https://www.tbi.univie.ac.at/RNA/.
+
+# Usage
+
+
 
 # Reference
 Wait for update
