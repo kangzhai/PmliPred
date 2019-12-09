@@ -11,7 +11,7 @@ The repository can be downloaded locally by clicking "clone or download" button.
 # Description
 The example datasets can be obtained by unzipping "Datasets.zip". "miR399-1077" file includes the raw sequence and features
 
-# Dependencies
+# Dependency
 python 2.7
 
 Keras
