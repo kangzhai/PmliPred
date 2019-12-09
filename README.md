@@ -16,5 +16,10 @@ python 2.7
 
 Keras
 
+# Related link
+ViennaRNA Package 2.0 can be downloaded from https://www.tbi.univie.ac.at/RNA/.
+
+ViennaRNA Package 2.0 is also provided in this repository.
+
 # Reference
-Wait for updated
+Wait for update
