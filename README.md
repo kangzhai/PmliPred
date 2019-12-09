@@ -32,19 +32,19 @@ Feature description.xlsx lists the number of extracted features of each miRNA-ln
 
 python PmliPredForCrossValidation.py
 
-Explanation: there are four parameters can be adjusted manually, where "K" means K-fold cross validation, "WeightStrategy = 1" means the complete weight is selected and "WeightStrategy = 2" means the average weight is selected, "ThresholdStrategy = 1" means the variable threshold is selected and "ThresholdStrategy = 2" means the constant threshold is selected, "threshold" is the value of threshold and it can be used just on canstant threshold strategy.
+Explanation: there are four parameters can be adjusted manually, where "K" means K-fold cross validation, "WeightStrategy = 1" means the complete weight is selected and "WeightStrategy = 2" means the average weight is selected, "ThresholdStrategy = 1" means the variable threshold is selected and "ThresholdStrategy = 2" means the constant threshold is selected, "threshold" is the value of threshold and it can be used just on canstant threshold strategy. The outputs are the results of each fold and the average results of K folds.
 
 (2) test PmliPred
 
 python PmliPredForTest.py
 
-Explanation: there is just one parameter can be adjusted manually, where "PlantName" means the test species. Here we provide two selections of the species, such as 'Arabidopsis lyrata' or 'Solanum lycopersicum'.
+Explanation: there is just one parameter can be adjusted manually, where "PlantName" means the test species. Here we provide two selections of the species, such as 'Arabidopsis lyrata' or 'Solanum lycopersicum'. The output it the AUC value.
 
 (3) predict plant miRNA-lncRNA interaction
 
 python PmliPredForPrediction.py
 
-Explanation: there are two parameters can be adjusted manually, where "InteractionName" means the name of miRNA-lncRNA interaction, "IndependentTimes" means the times of independent prediction. Here we provide two selections of the name of miRNA-lncRNA interaction, such as 'miR482b-TCONS_00023468' or 'miR399-lnc1077'.
+Explanation: there are two parameters can be adjusted manually, where "InteractionName" means the name of miRNA-lncRNA interaction, "IndependentTimes" means the times of independent prediction. Here we provide two selections of the name of miRNA-lncRNA interaction, such as 'miR482b-TCONS_00023468' or 'miR399-lnc1077'. The outputs are the confidence probability that there is an interaction in the sample (pc) of each time of independent prediction and the average pc value of IndependentTimes times of predictions
 
 # Note
 The above three files can be opened using python IDE, such as pyCharm and so on. They can be also opened as the txt or fasta files. Then the parameters can be adjusted manually. We will try to make these parameters directly available as the input in future updates.
