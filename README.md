@@ -48,9 +48,9 @@ command: python PmliPredForPrediction.py
 
 Explanation: there are two parameters can be adjusted manually, where "InteractionName" means the name of miRNA-lncRNA interaction, "IndependentTimes" means the times of independent prediction. Here we provide two selections of the name of miRNA-lncRNA interaction, such as 'miR482b-TCONS_00023468' or 'miR399-lnc1077'. The outputs are the confidence probability that there is an interaction in the sample (pc) of each time of independent prediction and the average pc value of IndependentTimes times of predictions
 
-# Note
-The above three files can repeat the experiments in our paper. They can be opened using python IDE, such as pyCharm and so on. They can be also opened as .txt or .fasta files. Then the parameters can be adjusted manually. We will try to make these parameters directly available as the input in future updates.
+These three files can repeat the experiments in our paper. They can be opened using python IDE, such as pyCharm and so on. They can be also opened as .txt or .fasta files. Then the parameters can be adjusted manually. We will try to make these parameters directly available as the input in future updates.
 
+# Note
 "PmliPredForPridiction.py" can be also used to predict a new plant miRNA-lncRNA interaction. The input must be the miRNA-lncRNA sequence and manually features at this version. The input format can be referred to "miR399-lnc1077" or "miR482b-TCONS_00023468", where the sequence is composed of the sequences of miRNA and lncRNA and the feature are combined by the features of miRNA and lncRNA. Here k-mer frequency and GC content are extracted by Python scripts, and number of base pairs and minimum free energy are extracted by Python scripts and RNAfold in ViennaRNA package. Install-ViennaRNA-2.4.10_64bit.exe is the installation of ViennaRNA package that contains RNAfold (a RNA secondary structure extraction tool). ViennaRNA package can be also downloaded from https://www.tbi.univie.ac.at/RNA/.
 
 In next update, we will organize these scripts to minimize the user's work and provide a file to predict a large number of interaction simultaneously.
