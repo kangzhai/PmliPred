@@ -9,6 +9,8 @@ PmliPred is a method for plant miRNA-lncRNA interaction prediction based on hybr
 The repository can be downloaded locally by clicking "clone or download" button. PmliPred can be applied directly without installation. 
 
 # Dependency
+windows operating system
+
 python 3.6.5
 
 Keras 2.2.4
