@@ -1,7 +1,7 @@
 # PmliPred
 The related datasets and scoure codes of PmliPred privided by Q. Kang
 
-The latest version is updated on 2019.12.09.
+The latest version is updated on 2020.05.21.
 
 # Introduction
 PmliPred is a method for plant miRNA-lncRNA interaction prediction based on hybrid model and fuzzy decision. It is implemented by Keras  and all main scripts are written by Python on PC under a Microsoft Windows 10 operating system.
