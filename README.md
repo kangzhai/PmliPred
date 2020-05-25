@@ -1,5 +1,5 @@
 # PmliPred
-The related datasets and scoure codes of PmliPred privided by Q. Kang (KQ890112@qq.com or kangqiang@mail.dlut.edu.cn)
+The related datasets and scoure codes of PmliPred privided by Q. Kang
 
 The latest version is updated on 2020.05.21.
 
