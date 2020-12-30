@@ -58,4 +58,6 @@ These three files can repeat the experiments in our paper. They can be opened us
 In next update, we will organize these scripts to minimize the user's work and provide a file to predict a large number of interaction simultaneously.
 
 # Reference
+If you use the codes, please cite the reference as below.
+
 Qiang Kang, Jun Meng, Jun Cui, Yushi Luan, Ming Chen. PmliPred: a method based on hybrid model and fuzzy decision for plant miRNA-lncRNA interaction prediction. Bioinformatics, 2020, 36(10): 2986-2992. https://doi.org/10.1093/bioinformatics/btaa074
