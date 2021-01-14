@@ -1,5 +1,5 @@
 # PmliPred
-The related datasets and scoure codes of PmliPred are privided by Q. Kang
+The related datasets and scoure codes of PmliPred are provided by Q. Kang
 
 The latest version is updated on May 21, 2020.
 
