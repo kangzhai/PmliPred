@@ -30,7 +30,7 @@ The example datasets can be obtained by unzipping "Datasets.zip".
 Feature description.xlsx lists the number of extracted features of each miRNA-lncRNA interaction sample, where 23 features are from miRNA and the other 87 features are from lncRNA.
 
 # Usage
-Open the console or powershell in the local folder and copy the following command to run PmliPred.
+Open the console or powershell in the local folder and copy the following commands to run PmliPred.
 
 (1) perform k-fold cross validation
 
