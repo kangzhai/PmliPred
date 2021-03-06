@@ -3,6 +3,10 @@ The related datasets and scoure codes of PmliPred are provided by Q. Kang.
 
 The latest version is updated on May 21, 2020.
 
+If you use the codes, please cite the reference as below.
+
+Qiang Kang, Jun Meng, Jun Cui, Yushi Luan, Ming Chen. PmliPred: a method based on hybrid model and fuzzy decision for plant miRNA-lncRNA interaction prediction. Bioinformatics, 2020, 36(10): 2986-2992. https://doi.org/10.1093/bioinformatics/btaa074
+
 # Introduction
 PmliPred is a method for plant miRNA-lncRNA interaction prediction based on hybrid model and fuzzy decision. It is implemented by Keras  and all main scripts are written by Python on PC under a Microsoft Windows 10 operating system.
 
@@ -56,8 +60,3 @@ These three files can repeat the experiments in our paper. They can be opened us
 "PmliPredForPridiction.py" can be also used to predict a new plant miRNA-lncRNA interaction. The input must be the miRNA-lncRNA sequence and manually features at this version. The input format can be referred to "miR399-lnc1077" or "miR482b-TCONS_00023468", where the sequence is composed of the sequences of miRNA and lncRNA and the feature are combined by the features of miRNA and lncRNA. Here k-mer frequency and GC content are extracted by Python scripts, and number of base pairs and minimum free energy are extracted by Python scripts and RNAfold in ViennaRNA package. Install-ViennaRNA-2.4.10_64bit.exe is the installation of ViennaRNA package that contains RNAfold (a RNA secondary structure extraction tool). ViennaRNA package can be also downloaded from https://www.tbi.univie.ac.at/RNA/.
 
 In next update, we will organize these scripts to minimize the user's work and provide a file to predict a large number of interaction simultaneously.
-
-# Reference
-If you use the codes, please cite the reference as below.
-
-Qiang Kang, Jun Meng, Jun Cui, Yushi Luan, Ming Chen. PmliPred: a method based on hybrid model and fuzzy decision for plant miRNA-lncRNA interaction prediction. Bioinformatics, 2020, 36(10): 2986-2992. https://doi.org/10.1093/bioinformatics/btaa074
