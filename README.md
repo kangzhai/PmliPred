@@ -26,7 +26,7 @@ The example datasets can be obtained by unzipping "Datasets.zip".
 
 "miR482b-TCONS_00023468" folder includes the raw sequence and manually features of the interaction between miRNA (miR482b) and lncRNA (TCONS_00023468) in solanum lycopersicum.
 
-Supplementary note：In the original training-validation set, miRNA and lncRNA sequences are spliced. Given that many researchers have asked me for training-validation set with the separation of miRNA and lncRNA sequences, I updated "Datasets.zip" on March 23, 2021. A "Sequence(separated with commas).fasta" is added which separates miRNA and lncRNA sequences with commas. When executing PmliPred, the original training-validation set is still used. "Sequence(separated with commas).fasta" provides another option for the related research.
+Supplementary note：In the original training-validation set, miRNA and lncRNA sequences are spliced. Given that many researchers have asked me for training-validation set with the separation of miRNA and lncRNA sequences, I updated "Datasets.zip" on March 23, 2021. A "Sequence(separated with commas).fasta" is added, which separates miRNA and lncRNA sequences with commas. When executing PmliPred, the original training-validation set is still used. "Sequence(separated with commas).fasta" provides another option for the related research.
 
 # Feature description
 Feature description.xlsx lists the number of extracted features of each miRNA-lncRNA interaction sample, where 23 features are from miRNA and the other 87 features are from lncRNA.
